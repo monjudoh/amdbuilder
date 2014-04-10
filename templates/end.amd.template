@@ -1,0 +1,4 @@
+<% if(typeof before !== 'undefined'){ %><%= before %><% } %>
+  return <%= moduleName.replace(/\//g,'_') %>;
+});
+<% if(typeof after !== 'undefined'){ %><%= after %><% } %>

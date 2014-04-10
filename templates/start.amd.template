@@ -1,0 +1,8 @@
+<% if(typeof before !== 'undefined'){ %><%= before %><% } %>
+define('<%= moduleName %>',
+[
+<%= deps.map(function(dep){return "'" + dep + "'"}).join(',\n') %>
+],function (
+<%= deps.map(function(dep){return dep.replace(/\//g,'_')}).join(',\n') %>
+) {
+<% if(typeof after !== 'undefined'){ %><%= after %><% } %>
