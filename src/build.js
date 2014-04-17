@@ -22,6 +22,9 @@ module.exports = function build(options,callback) {
       paths:{},
       optimize:'none'
     });
+    if (options.includeRule) {
+      options.exclude = require('./findExclude')(config, options.includeRule);
+    }
     options.exclude.forEach(function(dep){
       config.paths[dep] = 'empty:';
     });
