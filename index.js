@@ -8,3 +8,4 @@
  * @see https://github.com/monjudoh/amdbuilder
  */
 module.exports.build = require('./src/build');
+module.exports.findExclude = require('./src/findExclude');
