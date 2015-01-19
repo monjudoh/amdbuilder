@@ -1,0 +1,6 @@
+<%= before %>
+  return <%= moduleName.replace(/\//g,'_') %>;
+})(
+<%= deps.map(function(dep){return "require('" + dep + "')"}).join(',\n') %>
+);
+<%= after %>

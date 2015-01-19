@@ -1,4 +1,4 @@
 <%= before %>
   return <%= moduleName.replace(/\//g,'_') %>;
-});
+}).call(this);
 <%= after %>

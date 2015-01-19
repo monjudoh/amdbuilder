@@ -8,6 +8,7 @@ module.exports = function build(options,callback) {
   temp.track();
   function noop(){}
   options = _.defaults(deepcopy(options || {}),{
+    templateType:'amd'
   });
   callback = callback || noop;
   var config = (function () {
@@ -39,16 +40,27 @@ module.exports = function build(options,callback) {
     },
     comment:true
   };
+  var type2startTemplate = {
+    amd:'start.amd.template',
+    global:'start.global.template',
+    cjs:'start.cjs.template'
+  };
+  var type2endTemplate = {
+    amd:'end.amd.template',
+    global:'end.global.template',
+    cjs:'end.cjs.template'
+  };
+  var templateDir = path.resolve(__dirname,'../templates');
   var amdcleanOptions = {
     escodegen:escodegenOptions,
     wrap: {
-      start: _.template(fs.readFileSync(path.resolve(__dirname,'../templates/start.amd.template')).toString())({
+      start: _.template(fs.readFileSync(path.resolve(templateDir,type2startTemplate[options.templateType])).toString())({
         deps:options.exclude,
         moduleName:options.moduleName,
         before:options.startBefore,
         after:options.startAfter
       }),
-      end: _.template(fs.readFileSync(path.resolve(__dirname,'../templates/end.amd.template')).toString())({
+      end: _.template(fs.readFileSync(path.resolve(templateDir,type2endTemplate[[options.templateType]])).toString())({
         deps:options.exclude,
         moduleName:options.moduleName,
         before:options.endBefore,
