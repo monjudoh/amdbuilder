@@ -1,7 +1,6 @@
 {
-  "private": true,
   "name": "amdbuilder",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Build amd modules tosingle module.",
   "bugs": {
     "url": "https://github.com/monjudoh/amdbuilder/issues"
