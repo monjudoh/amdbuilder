@@ -3,6 +3,6 @@ define('<%= moduleName %>',
 [
 <%= deps.map(function(dep){return "'" + dep + "'"}).join(',\n') %>
 ],function (
-<%= deps.map(function(dep){return dep.replace(/\//g,'_')}).join(',\n') %>
+<%= deps.map(prefixTransform).join(',\n') %>
 ) {
 <%= after %>
