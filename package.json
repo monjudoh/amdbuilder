@@ -24,12 +24,12 @@
     "underscore": "~1.6",
     "temp": "~0.8",
     "requirejs": "~2.1",
-    "amdclean": "~2.4",
+    "amdclean": "~2.7",
     "esprima": "~1.2",
     "escodegen": "~1.6",
     "grasp": "~0.2.1"
   },
   "engine": {
-    "node": ">= 0.10"
+    "node": ">= 4.0.0"
   }
 }
