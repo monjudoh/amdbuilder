@@ -55,7 +55,7 @@ module.exports = function build(options,callback) {
   };
   var templateDir = path.resolve(__dirname,'../templates');
   function prefixTransform(name) {
-    return (options.prefixTransform)(null,name);
+    return (options.prefixTransform)(null,name) || name.replace(/\//g,'_');
   }
   var amdcleanOptions = Object.assign(Object.create(null),{
     escodegen:escodegenOptions,
