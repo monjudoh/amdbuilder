@@ -8,7 +8,10 @@ module.exports = function build(options,callback) {
   temp.track();
   function noop(){}
   options = _.defaults(deepcopy(options || {}),{
-    templateType:'amd'
+    templateType:'amd',
+    prefixTransform:function(postNormalizedModuleName, preNormalizedModuleName) {
+      return postNormalizedModuleName;
+    }
   });
   callback = callback || noop;
   var config = (function () {
@@ -51,23 +54,29 @@ module.exports = function build(options,callback) {
     cjs:'end.cjs.template'
   };
   var templateDir = path.resolve(__dirname,'../templates');
-  var amdcleanOptions = {
+  function prefixTransform(name) {
+    return (options.prefixTransform)(null,name);
+  }
+  var amdcleanOptions = Object.assign(Object.create(null),{
     escodegen:escodegenOptions,
     wrap: {
       start: _.template(fs.readFileSync(path.resolve(templateDir,type2startTemplate[options.templateType])).toString())({
         deps:options.exclude,
+        prefixTransform:prefixTransform,
         moduleName:options.moduleName,
         before:options.startBefore,
         after:options.startAfter
       }),
       end: _.template(fs.readFileSync(path.resolve(templateDir,type2endTemplate[[options.templateType]])).toString())({
         deps:options.exclude,
+        prefixTransform:prefixTransform,
         moduleName:options.moduleName,
         before:options.endBefore,
         after:options.endAfter
       })
-    }
-  };
+    },
+    prefixTransform:options.prefixTransform
+  });
   var distDir = options.distDir || temp.mkdirSync('distDir_'+options.moduleName.replace(/\//g,'_'));
   var requirejs = require('requirejs');
   var amdclean = require('amdclean');
