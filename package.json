@@ -1,6 +1,6 @@
 {
   "name": "amdbuilder",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Build amd modules tosingle module.",
   "bugs": {
     "url": "https://github.com/monjudoh/amdbuilder/issues"
@@ -26,12 +26,11 @@
     "grasp": "^0.6.0",
     "requirejs": "^2.1.22",
     "temp": "~0.8",
-    "underscore": "~1.6"
+    "underscore": "~1.6",
+    "amdclean": "^2.7.0"
+
   },
   "engine": {
     "node": ">= 4.0.0"
-  },
-  "devDependencies": {
-    "amdclean": "^2.7.0"
   }
 }
